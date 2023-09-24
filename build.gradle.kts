@@ -1,10 +1,9 @@
 plugins {
     kotlin("jvm") version "1.9.0"
-    application
 }
 
 group = "de.apps-roters"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -17,6 +16,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.json:json:20230227")
     implementation("org.apache.commons:commons-collections4:4.4")
+    implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
 }
 
@@ -26,8 +26,4 @@ tasks.test {
 
 kotlin {
     jvmToolchain(8)
-}
-
-application {
-    mainClass.set("MainKt")
 }

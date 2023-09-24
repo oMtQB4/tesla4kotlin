@@ -98,14 +98,14 @@ class TeslaConfiguration() {
         }
     }
 
-    fun readAccessToken(): String {
+    fun readAccessToken(): String? {
         openPropertiesFile()
-        return prop!!.getProperty(ACCESS_TOKEN)
+        return prop?.getProperty(ACCESS_TOKEN)
     }
 
-    fun readRefreshToken(): String {
+    fun readRefreshToken(): String? {
         openPropertiesFile()
-        return prop!!.getProperty(REFRESH_TOKEN)
+        return prop?.getProperty(REFRESH_TOKEN)
     }
 
     fun readVin(): String? {
@@ -166,46 +166,6 @@ class TeslaConfiguration() {
 
             // Departure charge settings
             val departureChargeUpdated = false
-            //		try {
-//			int newMinimumDepartureSoC = Integer.parseInt(prop.getProperty(MINIMUM_DEPARTURE_SOC));
-//			if (configurationUpdated && newMinimumDepartureSoC != minimumDepartureSoC) {
-//				log("New minimum departure SoC: " + newMinimumDepartureSoC + "%");
-//				departureChargeUpdated = true;
-//			}
-//			minimumDepartureSoC = newMinimumDepartureSoC;
-//		} catch (Exception ex) {
-//			minimumDepartureSoC = 0;
-//		}
-//
-//		try {
-//			double newSoCGainPerHour = Double.parseDouble(prop.getProperty(SOC_GAIN_PER_HOUR));
-//			if (configurationUpdated && newSoCGainPerHour != soCGainPerHour) {
-//				log("New SoC gain per hour: " + newSoCGainPerHour + "%");
-//				departureChargeUpdated = true;
-//			}
-//			soCGainPerHour = newSoCGainPerHour;
-//		} catch (Exception ex) {
-//			soCGainPerHour = 0;
-//			minimumDepartureSoC = 0;
-//		}
-//
-//		shouldChargeForDepature = (minimumDepartureSoC > 0 && soCGainPerHour > 0);
-//		if (configurationUpdated && departureChargeUpdated) {
-//			log("Vehicle will" + (!shouldChargeForDepature ? " not" : "") + " be charged to reach minimum departure SoC"
-//					+ (minimumDepartureSoC > 0 ? " of " + minimumDepartureSoC + "%" : "") + ".");
-//		}
-//
-//		// Restart on current drop setting
-//		boolean newRestartOnCurrentDrop = false;
-//		String restartOnCurrentDropSetting = prop.getProperty(RESTART_ON_CURRENT_DROP);
-//		if (restartOnCurrentDropSetting != null && restartOnCurrentDropSetting.toLowerCase().equals("y")) {
-//			newRestartOnCurrentDrop = true;
-//		}
-//
-//		if (configurationUpdated && newRestartOnCurrentDrop != restartOnCurrentDrop) {
-//			log("New restart on current drop flag: " + (newRestartOnCurrentDrop ? "Y" : "N"));
-//		}
-//		restartOnCurrentDrop = newRestartOnCurrentDrop;
         }
     }
 }

@@ -21,7 +21,7 @@ class VehicleLocation {
     var isGoingAwayFromHome = false
         private set
 
-    internal constructor(lat: Double, lon: Double) {
+    constructor(lat: Double, lon: Double) {
         latitude = lat
         longitude = lon
         timestamp = floor((Instant.now().toEpochMilli() / 1000).toDouble()).toInt()

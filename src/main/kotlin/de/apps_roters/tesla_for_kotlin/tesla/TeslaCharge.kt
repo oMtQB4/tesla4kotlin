@@ -51,7 +51,7 @@ class TeslaCharge(
             (TeslaConfiguration.Companion.apiBase + "/api/1/vehicles/" + teslaVehicle.id + "/command/charge_"
                     + chargeCommand)
         val simpleResult = authRestRequest.postJson<SimpleResult>(apiEndpoint, null, SimpleResult::class.java)
-        if (simpleResult == null || simpleResult.response == null) return "unknown"
+        if (simpleResult?.response == null) return "unknown"
         return if (simpleResult.response!!.result) {
             null
         } else simpleResult.response!!.reason
