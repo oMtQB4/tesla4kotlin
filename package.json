@@ -1,0 +1,106 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "conventional-changelog-conventionalcommits": "^5.0.0",
+    "semantic-release-monorepo": "^7.0.5"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "tagFormat": "provisioning-v${version}",
+    "ci": false,
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "releaseRules": [
+            {
+              "type": "feat",
+              "release": false
+            },
+            {
+              "type": "fix",
+              "release": false
+            },
+            {
+              "type": "perf",
+              "release": false
+            },
+            {
+              "breaking": true,
+              "release": false
+            },
+            {
+              "revert": true,
+              "release": false
+            },
+            {
+              "type": "feat",
+              "scope": "provisioning",
+              "release": "minor"
+            },
+            {
+              "type": "fix",
+              "scope": "provisioning",
+              "release": "patch"
+            },
+            {
+              "type": "perf",
+              "scope": "provisioning",
+              "release": "patch"
+            },
+            {
+              "breaking": true,
+              "scope": "provisioning",
+              "release": "major"
+            },
+            {
+              "revert": true,
+              "scope": "provisioning",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "linkCompare": false,
+          "parserOpts": {
+            "headerPattern": "^(\\w*)(?:\\((provisioning)\\))\\: (.*)$"
+          }
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "/bin/bash -c './change_version.sh ${nextRelease.version}'"
+        }
+      ],
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json",
+            "package-lock.json",
+            "npm-shrinkwrap.json",
+            "build.gradle.kts"
+          ]
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "gradle-semantic-release-plugin": "^1.7.7"
+  }
+}
