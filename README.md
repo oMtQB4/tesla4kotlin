@@ -9,7 +9,7 @@ from [mikes222](https://github.com/mikes222).
 - Set the charging amps
 - Set the charging limit in percent
 - Retrieve charging infos from the car
-- Retrieve state of the car
+- Retrieve state of the car (lots of information)
 - Open/close the chargeport
 - Set the charging limit in percent
 - Wake the car up
@@ -68,7 +68,7 @@ Please also follow [mikes222](https://github.com/mikes222).
 
 ## Disclaimer
 
-We are not liable for any damage or any functionality of this app. The library is provided as-is. Use at your own risk.
+We are not liable for any damage or any functionality of this library. The library is provided as-is. Use at your own risk.
 
 ## License
 
