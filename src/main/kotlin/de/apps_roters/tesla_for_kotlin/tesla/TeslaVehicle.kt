@@ -108,7 +108,7 @@ class TeslaVehicle(authRestRequest: AuthRestRequest, teslaConfiguration: TeslaCo
             if (timestampCache != 0L && System.currentTimeMillis() - timestampCache < 10000) {
                 return lastCache!!.response
             }
-            try {
+//            try {
                 val vehicleDataResponse = authRestRequest
                     .getJSON<VehicleData>(
                         TeslaConfiguration.Companion.apiBase + "/api/1/vehicles/" + id + "/vehicle_data",
@@ -119,23 +119,23 @@ class TeslaVehicle(authRestRequest: AuthRestRequest, teslaConfiguration: TeslaCo
                     timestampCache = System.currentTimeMillis()
                     return vehicleDataResponse.response
                 }
-            } catch (e: SleepingCarException) {
-                val ok = wakeUpVehicle()
-                if (!ok) {
-                    logger.warn("Waking up the car failed")
-                }
-                // repeat once
-                val vehicleDataResponse = authRestRequest
-                    .getJSON<VehicleData>(
-                        TeslaConfiguration.Companion.apiBase + "/api/1/vehicles/" + id + "/vehicle_data",
-                        VehicleData::class.java
-                    )
-                if (vehicleDataResponse != null && vehicleDataResponse.response != null) {
-                    lastCache = vehicleDataResponse
-                    timestampCache = System.currentTimeMillis()
-                    return vehicleDataResponse.response
-                }
-            }
+//            } catch (e: SleepingCarException) {
+//                val ok = wakeUpVehicle()
+//                if (!ok) {
+//                    logger.warn("Waking up the car failed")
+//                }
+//                // repeat once
+//                val vehicleDataResponse = authRestRequest
+//                    .getJSON<VehicleData>(
+//                        TeslaConfiguration.Companion.apiBase + "/api/1/vehicles/" + id + "/vehicle_data",
+//                        VehicleData::class.java
+//                    )
+//                if (vehicleDataResponse != null && vehicleDataResponse.response != null) {
+//                    lastCache = vehicleDataResponse
+//                    timestampCache = System.currentTimeMillis()
+//                    return vehicleDataResponse.response
+//                }
+//            }
             return null
         }
 
