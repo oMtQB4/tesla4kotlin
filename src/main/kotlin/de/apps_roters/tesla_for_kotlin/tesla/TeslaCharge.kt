@@ -25,12 +25,12 @@ class TeslaCharge(
          * @throws Exception
          */
         get() {
-            val chargeState: TeslaVehicle.ChargeState? = teslaVehicle.vehicleChargeState
-            if (chargeState != null) {
-                if (chargeState.charging_state != null && chargeState.charge_port_door_open) {
-                    val chargingState = chargeState.charging_state
-                    return chargingState.equals("charging", ignoreCase = true)
-                }
+            val chargeState: TeslaVehicle.ChargeState = teslaVehicle.vehicleData?.charge_state
+                ?: throw SleepingCarException()
+
+            if (chargeState.charging_state != null && chargeState.charge_port_door_open) {
+                val chargingState = chargeState.charging_state
+                return chargingState.equals("charging", ignoreCase = true)
             }
             return false
         }

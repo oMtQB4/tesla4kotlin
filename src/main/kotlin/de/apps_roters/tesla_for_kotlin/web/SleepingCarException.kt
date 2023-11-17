@@ -1,6 +1,6 @@
 package de.apps_roters.tesla_for_kotlin.web
 
-class SleepingCarException internal constructor(cause: Exception?) : RuntimeException(cause) {
+class SleepingCarException internal constructor(cause: Exception? = null) : RuntimeException(cause) {
     companion object {
         /**
          *
